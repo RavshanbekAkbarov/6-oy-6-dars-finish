@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Create({ setTodos }) {
   const navigate = useNavigate();
@@ -8,6 +9,13 @@ function Create({ setTodos }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!title.trim()) {
+      toast.warn("title yozilmagan");
+      return;
+    } else if (!description.trim()) {
+      toast.warn("description yozilmagan");
+      return;
+    }
     setTodos((prev) => {
       return [
         ...prev,
